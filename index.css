@@ -1,0 +1,300 @@
+/* ======= پایه ======= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 2rem;
+  z-index: 100;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.logo {
+  color: #00ffff;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00ffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ======= لینک‌ها ======= */
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #00ffff;
+  transform: scale(1.1);
+}
+
+nav lord-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* ======= ریسپانسیو ======= */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.6rem 1.2rem;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.6rem;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    gap: 0.3rem;
+  }
+
+  nav lord-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+  }
+
+  nav lord-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+
+/* والد کارت‌ها برای چیدمان ریسپانسیو */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  padding-top: 160px; /* فاصله از هدر */
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 10;
+  position: relative;
+}
+
+/* کارت گلکسی */
+.galaxy-card {
+  max-width: 350px;
+  width: 100%;
+  height: 410px;
+  border: 4px solid transparent;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+
+.galaxy-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(45deg, #00ffff, #0066ff, #00ffff, #00ccff);
+  background-size: 400% 400%;
+  animation: borderflow 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.card-content {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  transform: translateZ(40px);
+  transition: all 0.4s ease;
+}
+
+.galaxy-card:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+}
+
+.galaxy-card:hover .card-content {
+  color: #00ffff;
+  transform: translateZ(60px);
+}
+
+@keyframes borderflow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* کارت نبیولا */
+.nebula-card {
+  position: relative;
+  width: 100%;
+  height: 410px;
+  max-width: 350px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease, box-shadow 0.6s ease, background 0.6s ease;
+  border: 4px solid transparent;
+  animation: borderFlow 6s linear infinite;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  z-index: 5;
+}
+
+.nebula-card::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(130deg, #00ffff, #ff00ff, #00ffff);
+  z-index: -1;
+  border-radius: 22px;
+  background-size: 300% 300%;
+  animation: moveBorder 4s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  padding: 4px;
+}
+
+.nebula-card:hover {
+  transform: rotateY(15deg) rotateX(15deg);
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes moveBorder {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* تنظیمات کلی برای کارت‌ها */
+.galaxy-card,
+.nebula-card {
+  max-width: 350px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 5;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  padding-top: 160px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* کارت گلکسی نسخه دیگر */
+.galaxy-card {
+  height: auto;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* کارت نبیولا نسخه دیگر */
+.nebula-card {
+  min-height: 400px;
+  box-sizing: border-box;
+}
+
+/* هدر */
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+  color: white;
+}
+
+/* واکنش‌گرایی برای موبایل */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+    gap: 30px;
+  }
+
+  .galaxy-card,
+  .nebula-card {
+    width: 90%;
+    max-width: 360px;
+    margin-bottom: 30px;
+  }
+
+  .nebula-card {
+    min-height: 460px !important;
+  }
+
+  header {
+    font-size: 1.5rem;
+    padding: 15px;
+  }
+}
+
+
+    
+/* تنظیمات عمومی */
+body, html {
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
